@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 import './App.css';
-// import { ReactComponent as Logo } from './img/mercedes_logo.svg';
+import { ReactComponent as Logo } from './img/mercedes_logo.svg';
 // import carVideo from "./video/car_video.mp4";
 import carVideo from "./video/mercedes_video.mp4";
 import logoAnimation from './video/Mercedes_animation.mp4';
@@ -320,8 +320,8 @@ function App() {
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">English</a></li>
               </ul>
               <div className='bg-black inline-flex m-auto w-full z-50 top-0 items-center md:py-2'>
-                {/* <Logo className='w-[2.45rem] m-auto'/> */}
-                <div className='md:w-60 sm:h-16 h-12 m-auto overflow-hidden items-center justify-center flex'>
+                <Logo className='w-[2rem] m-auto'/>
+                <div className='md:w-60 md:flex hidden sm:h-16 h-12 m-auto overflow-hidden items-center justify-center'>
                   <a href="./">
                     <video className='md:h-32 h-16' src={logoAnimation} autoPlay muted></video>
                   </a>
@@ -378,8 +378,8 @@ function App() {
               </div>
               <div className='md:hidden absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 overflow-hidden text-neutral-200 z-20'>
                 <div className='text-[2rem] md:text-3xl font-videoText font-light text-center' style={imgText}>The Geländewagen</div>
-                <div className='m-auto w-full flex justify-center'>
-                  <a href="./"><button className='bg-neutral-50 hover:bg-blue-900 text-neutral-950 hover:text-neutral-50 px-4 py-1 mt-4 rounded-2xl text-xs ' style={imgText}>Discover more ﹥</button></a>
+                <div className='m-auto w-full flex justify-center' style={imgText}>
+                  <a href="./"><button className='bg-neutral-50 hover:bg-blue-900 text-neutral-950 hover:text-neutral-50 px-4 py-1 mt-4 rounded-2xl text-xs '>Discover more ﹥</button></a>
                 </div>
               </div>
               <div className='absolute text-sm align-center px-28 bottom-[12dvh] overflow-hidden text-neutral-200'>
