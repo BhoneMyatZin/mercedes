@@ -320,7 +320,7 @@ function App() {
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">English</a></li>
               </ul>
               <div className='bg-black inline-flex m-auto w-full z-50 top-0 items-center md:py-2'>
-                <Logo className='w-[2rem] m-auto'/>
+                <Logo className='w-[2rem] m-auto md:hidden'/>
                 <div className='md:w-60 md:flex hidden sm:h-16 h-12 m-auto overflow-hidden items-center justify-center'>
                   <a href="./">
                     <video className='md:h-32 h-16' src={logoAnimation} autoPlay muted></video>
@@ -347,7 +347,7 @@ function App() {
 
         <div className='w-full firstContainer overflow-hidden '>
           <div className='firstSection h-[100dvh]'>
-            <video className='object-cover w-full h-[100dvh]' src={carVideo} autoPlay loop muted></video>
+            <video className='object-cover w-full h-[100dvh]' src={carVideo} autoPlay loop muted controls={false}></video>
             <div className='w-full absolute top-0 z-[1] h-[100dvh] bg-black' style={oneTimeCurtain}></div>
             <div className='vignette w-full h-[110dvh]'></div>
             <div className='md:hidden block absolute top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 overflow-hidden text-neutral-200'>
