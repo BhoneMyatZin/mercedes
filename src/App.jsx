@@ -313,21 +313,21 @@ function App() {
       <div className=''>
         <div className='fixed top-0 w-full scroll-smooth nav z-30 bg-black text-neutral-50'>
           <div className='bg-black inline-block w-full' onMouseOver={ menuMouseOver } onMouseLeave={ menuMouseLeave }>
-            <div className='invisibleWall h-36 fixed z-30 w-full opacity-0'> </div>
+            <div className='md:block hidden invisibleWall h-36 fixed z-30 w-full opacity-0'> </div>
             <div className='flex justify-between items-center'>
-              <ul className='ml-8 md:text-xs text-[0.6rem] inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow}>
+              <ul className='ml-2 md:ml-8 text-[0.5rem] sm:text-xs inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow}>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Deutsh</a></li>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">English</a></li>
               </ul>
               <div className='bg-black inline-flex m-auto w-full z-50 top-0 items-center md:py-2'>
                 {/* <Logo className='w-[2.45rem] m-auto'/> */}
-                <div className='w-60 h-16 m-auto overflow-hidden items-center justify-center flex'>
+                <div className='md:w-60 sm:h-16 h-12 m-auto overflow-hidden items-center justify-center flex'>
                   <a href="./">
                     <video className='md:h-32 h-16' src={logoAnimation} autoPlay muted></video>
                   </a>
                 </div>
               </div>
-              <ul className='mr-8 md:text-xs text-[0.6rem] inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow} >
+              <ul className='mr-2 md:mr-8 sm:text-xs text-[0.5rem] inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow} >
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Search</a> </li>                                                                                                                                                                             
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Login</a></li>
               </ul>
