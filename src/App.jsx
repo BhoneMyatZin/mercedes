@@ -18,18 +18,32 @@ function App() {
   const windowHeight = window.innerHeight;
 
   const [isRendered, setIsRendered] = useState(false);
+  console.log(isRendered)
 
   const [scrollState, setScrollState] = useState(true);
 
   const [scrollState2, setScrollState2] = useState(true);
 
-  const [videoText, setVideoText] = useState({});
+  const [videoText, setVideoText] = useState({
+    transition: 'transform 1s',
+    transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.8, 0.98)',
+    transform: "translateY(-300px)",
+  });
 
   const [videoTextHide2, setVideoTextHide2] = useState({});
 
   const [oneTimeCurtain, setOneTimeCurtain] = useState({});
 
   const [blackCurtain, setBlackCurtain] = useState({});
+
+  useEffect(() => {
+    // Set the state to true after the component mounts to trigger the transition
+    const timer = setTimeout(() => {
+      setIsRendered(true);
+    }, 4000); // Immediate effect after mount
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const [imgText, setImgText] = useState({
     transform: "translateY(200%)",
@@ -64,7 +78,7 @@ function App() {
   const scrollShow = {
     transition: 'transform 3s cubic-bezier(0.1, 0.01, 0.08, 0.9)',
     transform: "translateY(0px)",
-    transitionDelay: isRendered? '0.4s' : '2.3s'
+    transitionDelay: isRendered? '0.2s' : '2.3s'
   }
 
   const videoTextHide = {
@@ -76,7 +90,7 @@ function App() {
   const videoTextShow = {
     transition: 'transform 1.8s',
     transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.8, 0.98)',
-    transitionDelay: isRendered? '0.4s' : '4.5s',
+    transitionDelay: isRendered? '0.2s' : '4.5s',
     transform: "translateY(0px)",
   } 
 
@@ -110,15 +124,6 @@ function App() {
       )
     }
   }
-
-  // useEffect(() => {
-  //   // Set the state to true after the component mounts to trigger the transition
-  //   const timer = setTimeout(() => {
-  //     setIsRendered(true);
-  //   }, 0); // Immediate effect after mount
-
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   useEffect(() => {
     if (whiteCurtainInView) {
@@ -275,10 +280,13 @@ function App() {
         // transitionDelay: '1s'
       })
     }
+    console.log(scrollData.lastY);
+    console.log(scrollData.y)
     if (window.scrollY <= 300 && (scrollData.lastY > scrollData.y)) {
       setVideoText({
         transition: 'transform 6s cubic-bezier(0.12, 0.01, 0.0.8, 0.98) 0.2s',
         transform: "translateY(0)",
+        transitionDelay: isRendered ? "3s" : "0s"
       })
       setVideoTextHide2({
         transition: 'transform 4s cubic-bezier(0.12, 0.01, 0.0.9, 0.90)',
@@ -312,22 +320,22 @@ function App() {
     <Fragment>
       <div className=''>
         <div className='fixed top-0 w-full nav z-30 bg-black text-neutral-50'>
-          <div className='bg-black inline-block w-full' onMouseOver={ menuMouseOver } onMouseLeave={ menuMouseLeave }>
+          <div className='bg-black inline-block w-full top-0' onMouseOver={ menuMouseOver } onMouseLeave={ menuMouseLeave }>
             <div className='md:block hidden invisibleWall h-36 fixed z-30 w-full opacity-0'> </div>
-            <div className='flex justify-between items-center'>
-              <ul className='ml-2 md:ml-8 text-[0.5rem] sm:text-xs inline-flex navScroll z-50 w-28' style={scrollState ? scrollHide : scrollShow}>
+            <div className='flex justify-between items-center w-full'>
+              <ul className='ml-2 md:ml-8 text-[0.5rem] sm:text-xs inline-flex absolute top-[2rem] left-0 navScroll z-[60] w-28' style={scrollState ? scrollHide : scrollShow}>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Deutsh</a></li>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">English</a></li>
               </ul>
-              <div className='bg-black inline-flex m-auto w-full z-50 top-0 items-center md:py-2'>
+              <div className='bg-black flex m-auto w-full z-50 items-center md:py-2'>
                 <Logo className='w-[2rem] m-auto md:hidden'/>
-                <div className='md:w-60 md:flex hidden sm:h-16 m-auto overflow-hidden items-center justify-center'>
+                <div className='w-full md:flex hidden sm:h-16 m-auto overflow-hidden items-center justify-center'>
                   <a href="./">
                     <video className='w-60 m-auto' src={logoAnimation} autoPlay muted controls={false}></video>
                   </a>
                 </div>
               </div>
-              <ul className='mr-2 md:mr-8 sm:text-xs text-[0.5rem] inline-flex navScroll z-50 w-28' style={scrollState ? scrollHide : scrollShow} >
+              <ul className='mr-2 md:mr-8 sm:text-xs text-[0.5rem] inline-flex absolute top-[2rem] right-0 navScroll z-[60] w-28' style={scrollState ? scrollHide : scrollShow} >
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Search</a> </li>                                                                                                                                                                             
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Login</a></li>
               </ul>
@@ -344,7 +352,6 @@ function App() {
             </ul>
           </div>
         </div>
-
         <div className='w-full firstContainer overflow-hidden '>
           <div className='firstSection h-[100dvh]'>
             <video className='object-cover w-full h-[100dvh]' src={carVideo} autoPlay loop muted controls={false}></video>
@@ -358,11 +365,13 @@ function App() {
                   <button className='bg-neutral-50 hover:bg-blue-900 text-neutral-950 hover:text-neutral-50 px-4 py-2 mt-4 rounded-2xl text-xs' style={videoText}>Discover more ﹥</button>  
                 </div>
               </div>
-            </div>
+            </div>         
             <div className='md:block hidden absolute top-[13rem] left-14 overflow-hidden text-neutral-200'>
               <div className='text-5xl font-[300] font-videoText' style={scrollState2 ? videoTextHide : videoTextShow}>The Geländewagen. Electrified.</div>
-              <div className='mt-10 text-xl' style={videoText}>The all-new electric G-Class.</div>
-              <button className='bg-neutral-900 hover:bg-blue-900 px-4 py-2 mt-4 rounded-2xl text-xs' style={videoText}>Discover more ﹥</button>          
+              <div>
+                <div className='mt-10 text-xl' style={videoText}>The all-new electric G-Class.</div>
+                <button className='bg-neutral-900 hover:bg-blue-900 px-4 py-2 mt-4 rounded-2xl text-xs' style={videoText}>Discover more ﹥</button>          
+              </div>
             </div>
             <div className='absolute bottom-[3dvh] md:left-14 left-0 overflow-hidden text-neutral-200'>
               <div className='md:text-sm font-light font-videoText text-xs text-center' style={videoTextHide2}>Mercedes-Benz G 580 mit EQ Technologie: Energieverbauch kombiniert: 30,3-27,7 kWh/100 kmCO₂-Emissionen kombiniert: 0 g/kmCO₂-Klasse(n): A</div>
