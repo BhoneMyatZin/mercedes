@@ -111,14 +111,14 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    // Set the state to true after the component mounts to trigger the transition
-    const timer = setTimeout(() => {
-      setIsRendered(true);
-    }, 0); // Immediate effect after mount
+  // useEffect(() => {
+  //   // Set the state to true after the component mounts to trigger the transition
+  //   const timer = setTimeout(() => {
+  //     setIsRendered(true);
+  //   }, 0); // Immediate effect after mount
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   useEffect(() => {
     if (whiteCurtainInView) {
@@ -311,23 +311,23 @@ function App() {
   return (
     <Fragment>
       <div className=''>
-        <div className='fixed top-0 w-full scroll-smooth nav z-30 bg-black text-neutral-50'>
+        <div className='fixed top-0 w-full nav z-30 bg-black text-neutral-50'>
           <div className='bg-black inline-block w-full' onMouseOver={ menuMouseOver } onMouseLeave={ menuMouseLeave }>
             <div className='md:block hidden invisibleWall h-36 fixed z-30 w-full opacity-0'> </div>
             <div className='flex justify-between items-center'>
-              <ul className='ml-2 md:ml-8 text-[0.5rem] sm:text-xs inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow}>
+              <ul className='ml-2 md:ml-8 text-[0.5rem] sm:text-xs inline-flex navScroll z-50 w-28' style={scrollState ? scrollHide : scrollShow}>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Deutsh</a></li>
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">English</a></li>
               </ul>
               <div className='bg-black inline-flex m-auto w-full z-50 top-0 items-center md:py-2'>
                 <Logo className='w-[2rem] m-auto md:hidden'/>
-                <div className='md:w-60 md:flex hidden sm:h-16 h-12 m-auto overflow-hidden items-center justify-center'>
+                <div className='md:w-60 md:flex hidden sm:h-16 m-auto overflow-hidden items-center justify-center'>
                   <a href="./">
-                    <video className='md:h-32 h-16' src={logoAnimation} autoPlay muted></video>
+                    <video className='w-60 m-auto' src={logoAnimation} autoPlay muted controls={false}></video>
                   </a>
                 </div>
               </div>
-              <ul className='mr-2 md:mr-8 sm:text-xs text-[0.5rem] inline-flex navScroll z-50' style={scrollState ? scrollHide : scrollShow} >
+              <ul className='mr-2 md:mr-8 sm:text-xs text-[0.5rem] inline-flex navScroll z-50 w-28' style={scrollState ? scrollHide : scrollShow} >
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Search</a> </li>                                                                                                                                                                             
                 <li className='px-2 hover:text-neutral-50 text-neutral-300'><a href="./">Login</a></li>
               </ul>
@@ -467,17 +467,17 @@ function App() {
         <div className='footer w-full bg-neutral-950 text-neutral-400 text-xs'>
           <div className='h-[1px] bg-neutral-600 w-[90%] m-auto'></div>
           <ul className='flex flex-wrap md:gap-x-6 gap-x-4 py-[2rem] mt-[0.5rem] m-auto justify-center md:px-[3rem] px-[1.6rem] text-[0.7rem] gap-y-3'>
-            <a href='./'><li className='hover:text-neutral-50'>Provider</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Legal Notice</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Settings</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Privacy</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Contact</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Third Party License Notices</li></a>
-            <a href='./'><li className='hover:text-neutral-50'>Don't Sell My Personal Information (CCPA)</li></a>
+            <li className='hover:text-neutral-50'><a href='./'>Provider</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Legal Notice</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Settings</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Privacy</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Contact</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Third Party License Notices</a></li>
+            <li className='hover:text-neutral-50'><a href='./'>Don't Sell My Personal Information (CCPA)</a></li>
           </ul>
           <ul className='flex space-x-2 py-[1rem] w-full m-auto justify-center'>
             <li className='px-2 hover:text-neutral-50 text-neutral-400'><a href="./">Deutsh</a></li>
-            <div className='text-neutral-300'>|</div>
+            <li className='text-neutral-300'>|</li>
             <li className='px-2 hover:text-neutral-50 text-neutral-400'><a href="./">English</a></li>
           </ul>
         </div>
