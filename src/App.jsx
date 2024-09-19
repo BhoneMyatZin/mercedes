@@ -24,11 +24,7 @@ function App() {
 
   const [scrollState2, setScrollState2] = useState(true);
 
-  const [videoText, setVideoText] = useState({
-    transition: 'transform 1s',
-    transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.8, 0.98)',
-    transform: "translateY(-300px)",
-  });
+  const [videoText, setVideoText] = useState({});
 
   const [videoTextHide2, setVideoTextHide2] = useState({});
 
@@ -280,13 +276,30 @@ function App() {
         // transitionDelay: '1s'
       })
     }
-    console.log(scrollData.lastY);
-    console.log(scrollData.y)
-    if (window.scrollY <= 300 && (scrollData.lastY > scrollData.y)) {
+    if (window.scrollY >= 500 && window.scrollY < windowHeight * 2 && (!isRendered)) {
+      console.log("ok")
+      setBlackCurtain({
+        transition: 'transform 2s',
+        transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.6, 0.98)',
+        transform: "translateY(-200%)",
+        transitionDelay: '1s'
+      })
+      setImgText({
+        transition: 'transform 3s',
+        transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.6, 0.88)',
+        transform: "translateY(0)",
+        transitionDelay: '1.5s'
+      })
+      setOneTimeCurtain({
+        display: "hidden",
+      })
+    }
+    if (window.scrollY <= 450 && (scrollData.lastY > scrollData.y)) {
+    // if (window.scrollY <= windowHeight) {
+      console.log("IN the View")
       setVideoText({
         transition: 'transform 6s cubic-bezier(0.12, 0.01, 0.0.8, 0.98) 0.2s',
         transform: "translateY(0)",
-        transitionDelay: isRendered ? "3s" : "0s"
       })
       setVideoTextHide2({
         transition: 'transform 4s cubic-bezier(0.12, 0.01, 0.0.9, 0.90)',
@@ -294,27 +307,8 @@ function App() {
         transitionDelay: '1.5s',
       })
     }
-    if (window.scrollY > windowHeight) {
-      setImgText({
-        transition: 'transform 0.4s',
-        transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.8, 0.78)',
-        transform: "translateY(200%)",
-        transitionDelay: '1s'
-      })
-      setBlackCurtain ({
-        transition: 'transform 2s',
-        transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.6, 0.88)',
-        transform: "translateY(-200%)",
-        transitionDelay: '0.4s'
-      })
-      setImgText({
-        transition: 'transform 3s',
-        transitionTimingFunction: 'cubic-bezier(0.12, 0.01, 0.0.6, 0.88)',
-        transform: "translateY(0)",
-        transitionDelay: '0.4s'
-      })
-    } 
   }
+  
 
   return (
     <Fragment>
@@ -379,7 +373,7 @@ function App() {
           </div> 
           <div className='secondSection h-[110dvh]'>
             <div className='relative overflow-hidden'>
-              <div className='w-full absolute top-0 z-20 h-[100dvh] opacity-95 bg-black' style={blackCurtain}></div> 
+              <div className='w-full absolute top-0 z-20 h-[110dvh] opacity-95 bg-black' style={blackCurtain}></div> 
               <img className='w-full h-[110dvh] object-cover' src={videoPic} alt="" />
               <div className='absolute top-[17rem] left-28 overflow-hidden text-neutral-200 z-20 hidden md:block'>
                 <div className='text-[2.5rem] font-videoText font-light' style={imgText}>The Geländewagen</div>
